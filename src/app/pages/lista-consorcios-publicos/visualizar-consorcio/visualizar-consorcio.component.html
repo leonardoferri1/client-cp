@@ -1,0 +1,175 @@
+<div class="tela-container">
+  <div class="component-space">
+    <p-toast
+      [showTransitionOptions]="'200ms'"
+      [hideTransitionOptions]="'500ms'"
+    ></p-toast>
+
+    <div class="form-container">
+      <div class="camp-row">
+        <div class="third-div">
+          <h3>Número:</h3>
+          <div style="width: 100%">
+            <input
+              type="text"
+              [(ngModel)]="numeroNovoConsorcio"
+              class="form-control"
+              disabled
+              name="numeroNovoConsorcio"
+            />
+          </div>
+        </div>
+
+        <div class="third-div">
+          <h3>Data de Emissão: <span class="text-red-500">*</span></h3>
+
+          <div style="display: flex; width: 100%">
+            <p-calendar
+              [(ngModel)]="dataEmissao"
+              [showIcon]="true"
+              class="calendar-control"
+              disabled
+              dateFormat="dd/mm/yy"
+            ></p-calendar>
+          </div>
+        </div>
+
+        <div class="first-div">
+          <h3>Contrato de Rateio Nº:</h3>
+          <input
+            type="text"
+            [(ngModel)]="numeroContratoRateio"
+            class="form-control"
+            disabled
+            name="numeroContratoRateio"
+          />
+        </div>
+      </div>
+
+      <div class="camp-row">
+        <div class="first-div">
+          <h3>Nome Consórcio: <span class="text-red-500">*</span></h3>
+          <div style="width: 100%">
+            <input
+              type="text"
+              [(ngModel)]="nomeConsorcio"
+              class="form-control"
+              disabled
+              name="nomeConsorcio"
+            />
+          </div>
+        </div>
+
+        <div class="first-div">
+          <h3>Contrato de Rateio Arquivo:</h3>
+          <div style="display: flex; width: 100%; gap: 0.5rem">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="documentoNome"
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="camp-row">
+        <div class="third-div">
+          <h3>Data Início Vigência: <span class="text-red-500">*</span></h3>
+          <div style="display: flex; width: 100%">
+            <p-calendar
+              [(ngModel)]="dataInicioVigencia"
+              [showIcon]="true"
+              class="calendar-control"
+              [disabled]="isReadOnly"
+              dateFormat="dd/mm/yy"
+            ></p-calendar>
+          </div>
+        </div>
+
+        <div class="third-div">
+          <h3>Data Fim Vigência: <span class="text-red-500">*</span></h3>
+          <div style="display: flex; width: 100%">
+            <p-calendar
+              [(ngModel)]="dataFimVigencia"
+              [showIcon]="true"
+              class="calendar-control"
+              [disabled]="isReadOnly"
+              dateFormat="dd/mm/yy"
+            ></p-calendar>
+          </div>
+        </div>
+
+        <div class="first-div">
+          <h3>CNPJ: <span class="text-red-500">*</span></h3>
+          <div style="width: 100%">
+            <p-autoComplete
+              [(ngModel)]="selectedCredor"
+              [disabled]="isReadOnly"
+              [dropdown]="true"
+            >
+            </p-autoComplete>
+          </div>
+        </div>
+      </div>
+
+      <div class="camp-row">
+        <div class="third-div">
+          <h3>Valor: <span class="text-red-500">*</span></h3>
+          <div style="width: 100%">
+            <input
+              type="text"
+              [(ngModel)]="valor"
+              currencyMask
+              class="form-control"
+              disabled
+              name="valor"
+              [options]="{
+                prefix: 'R$ ',
+                thousands: '.',
+                decimal: ',',
+                precision: 2
+              }"
+            />
+          </div>
+        </div>
+
+        <div class="first-div">
+          <h3>UG Interveniente: <span class="text-red-500">*</span></h3>
+          <div style="width: 100%">
+            <p-multiSelect
+              [options]="ugList"
+              [(ngModel)]="ugSelected"
+              [disabled]="isReadOnly"
+              optionLabel="nome"
+              placeholder="Selecione a Unidade Gestora"
+            ></p-multiSelect>
+          </div>
+        </div>
+      </div>
+
+      <div class="camp-row">
+        <div class="first-div">
+          <h3>Finalidade:</h3>
+          <div style="width: 100%">
+            <textarea
+              class="form-control"
+              type="text"
+              disabled
+              [(ngModel)]="finalidade"
+              name="finalidade"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-buttons-container">
+        <button class="return-button" (click)="voltarListagem()">Voltar</button>
+
+        <button class="advance-button-blue" (click)="printConsorcio()">
+          Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

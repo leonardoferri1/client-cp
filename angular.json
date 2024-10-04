@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "siafic-creditos-receber-frontend": {
+    "siafic-consorcios-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@ngx-env/builder:application",
           "options": {
-            "outputPath": "dist/siafic-creditos-receber-frontend",
+            "outputPath": "dist/siafic-consorcios-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -32,12 +32,16 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              }
+              },
+              "src/config.js"
             ],
+
             "styles": [
               "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
           },
@@ -69,10 +73,10 @@
           "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "siafic-creditos-receber-frontend:build:production"
+              "buildTarget": "siafic-consorcios-frontend:build:production"
             },
             "development": {
-              "buildTarget": "siafic-creditos-receber-frontend:build:development"
+              "buildTarget": "siafic-consorcios-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,8 +102,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

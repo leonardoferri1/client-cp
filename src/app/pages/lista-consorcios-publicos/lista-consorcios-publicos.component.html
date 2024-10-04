@@ -1,0 +1,154 @@
+<div class="tela-container">
+  <p-table
+    #dt
+    [value]="filteredConsorcioList"
+    [rows]="5"
+    [paginator]="true"
+    [tableStyle]="{ 'min-width': '100%;' }"
+    [rowsPerPageOptions]="[5, 10, 25, 50]"
+    [rowHover]="true"
+    [sortOrder]="1"
+  >
+    <ng-template pTemplate="caption">
+      <div style="display: flex; justify-content: space-between; width: 100%">
+        <button
+          class="advance-button-blue"
+          (click)="redirectNovo('lista-consorcios/novo')"
+        >
+          <i class="fa-solid fa-plus" style="font-size: 15px; color: #fff"></i>
+          Novo Consórcio
+        </button>
+        <div style="display: flex; gap: 0.5rem">
+          <button
+            class="icon-button-secondary"
+            style="
+              padding-top: 2px;
+              width: 40px !important;
+              height: 40px !important;
+            "
+            (click)="reloadPage()"
+          >
+            <i
+              class="bi bi-arrow-clockwise"
+              style="color: #fff; font-size: 23px !important"
+            ></i>
+          </button>
+          <button
+            class="icon-button-secondary"
+            style="
+              padding-top: 2px;
+              width: 40px !important;
+              height: 40px !important;
+            "
+            (click)="openSideBar()"
+          >
+            <i
+              class="bi bi-funnel"
+              style="color: #fff; font-size: 23px !important"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="table-column-title">
+        <th style="min-width: 100px">Número de Consórcio</th>
+        <th style="min-width: 100px">CNPJ</th>
+        <th style="min-width: 350px">Consórcio</th>
+        <th style="min-width: 50px">Data Início Vigência</th>
+        <th style="min-width: 50px">Data Fim Vigência</th>
+        <th style="min-width: 10px">Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-list>
+      <tr style="font-size: 13px !important">
+        <td>{{ list.numeroConsorcio }}</td>
+        <td>{{ list.cnpjConsorcio }}</td>
+        <td>{{ list.nomeConsorcio }}</td>
+        <td>{{ formatarData(list.dataInicioVigencia) }}</td>
+        <td>{{ formatarData(list.dataFimVigencia) }}</td>
+
+        <td class="table-buttons-container">
+          <button
+            pTooltip="Visualizar"
+            tooltipPosition="top"
+            (click)="redirectTo('lista-consorcios/visualizar', list.id)"
+            class="icon-button-secondary"
+            style="padding-top: 3px"
+          >
+            <i class="bi bi-search" style="color: #fff; font-size: 19px"></i>
+          </button>
+
+          <button
+            pTooltip="Editar"
+            tooltipPosition="top"
+            class="icon-button-secondary"
+            (click)="redirectTo('lista-consorcios/editar', list.id)"
+          >
+            <i class="bi bi-pencil" style="color: #fff; font-size: 19px"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr
+        style="font-size: 16px !important; color: rgb(112, 112, 112) !important"
+      >
+        <td colspan="10" class="text-center">Nenhum registro encontrado.</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <div class="paginator-info-container">
+        Total de
+        {{ filteredConsorcioList ? filteredConsorcioList.length : 0 }}
+        registros.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-sidebar
+  [(visible)]="sidebarOpen"
+  position="right"
+  [style]="{ width: '550px' }"
+>
+  <div class="sidebar-container">
+    <div class="first-div">
+      <h3>Nome do Consórcio:</h3>
+      <input
+        type="text"
+        class="form-control"
+        name="nomeConsorcio"
+        [(ngModel)]="nomeConsorcio"
+        id="inputField"
+        (input)="onInputChange($event)"
+      />
+    </div>
+
+    <div class="first-div"></div>
+    <h3>CNPJ:</h3>
+    <input
+      type="text"
+      class="form-control"
+      name="cnpjInput"
+      [(ngModel)]="cnpjInput"
+      id="inputField"
+      (input)="onInputChange($event)"
+    />
+  </div>
+
+  <div class="filter-buttons-container">
+    <button (click)="cleanFilters()" class="return-button">
+      Limpar Filtro
+    </button>
+    <button
+      (click)="filterConsorcios()"
+      class="advance-button-blue"
+      [disabled]="!cnpjInput && !nomeConsorcio"
+    >
+      Filtrar
+    </button>
+  </div>
+</p-sidebar>

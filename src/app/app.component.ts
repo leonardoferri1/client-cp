@@ -1,18 +1,17 @@
-import { Component } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
-import { NavbarComponent } from './shared/components/navbar/navbar.component'
-import { FooterComponent } from './shared/components/footer/footer.component'
-import { ToastModule } from 'primeng/toast'
-import { MessageService } from 'primeng/api'
+import { Component, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, ToastModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  providers: [MessageService],
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'siafic-creditos-receber-frontend'
+export class AppComponent implements OnInit {
+  title = 'siafic-consorcio-frontend';
+
+  constructor(private primeNGConfig: PrimeNGConfig) {}
+
+  ngOnInit(): void {
+    this.primeNGConfig.ripple = true;
+  }
 }

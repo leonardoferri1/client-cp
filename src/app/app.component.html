@@ -1,18 +1,7 @@
-<div class="default-theme bg-zinc-100 min-h-full h-screen">
-  <div>
-    <app-navbar></app-navbar>
-  </div>
-
-  <main class="bg-zinc-100 min-h-full h-screen overflow-y-auto">
-    <p-toast></p-toast>
-    <div class="h-screen min-h-full  flex flex-col m-auto" >
-      <router-outlet></router-outlet>
-    </div>
-  </main>
-
-  <div class="fixed w-full bottom-0  bg-zinc-100">
-    <app-footer></app-footer>
-  </div>
+<app-navbar></app-navbar>
+<div class="page-container-base">
+  <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>
 
-<!-- <app-spinner></app-spinner> -->
+<app-spinner></app-spinner>

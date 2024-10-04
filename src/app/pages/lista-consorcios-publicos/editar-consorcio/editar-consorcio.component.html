@@ -1,0 +1,13 @@
+<div class="tela-container">
+  <div class="component-space">
+    <div class="alert-box">
+      <i class="pi pi-info-circle text-lg text-white mr-2"></i>
+      Você está cadastrando um novo Consórcio!
+    </div>
+
+    <app-consorcio
+      [consorcioEditData]="consorcioEditData"
+      (consorcioBindData)="updateConsorcio($event)"
+    ></app-consorcio>
+  </div>
+</div>

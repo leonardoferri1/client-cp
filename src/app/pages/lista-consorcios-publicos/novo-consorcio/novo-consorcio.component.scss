@@ -1,0 +1,29 @@
+.component-space {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0 0 8px 8px;
+}
+
+.alert-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  width: 100%;
+  @apply bg-brandDark;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 6px;
+  font-size: 15px;
+
+  padding: 0.8rem;
+}
+
+.tela-container {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 5rem;
+}

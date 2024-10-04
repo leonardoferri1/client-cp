@@ -13,8 +13,8 @@ trigger:
 
 resources:
   repositories:
-  - repository: self
-    type: git
+    - repository: self
+      type: git
 
 jobs:
   - template: .azure-pipeline/azure-pipeline-jobs.yml

@@ -1,37 +1,35 @@
-import { Component, inject, type OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-import { PortalService } from '../../services/portal/portal.service'
-import { UserService } from '../../services/user/user.service'
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environments';
 
 @Component({
-  template: '',
-  standalone: true,
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  activatedRoute = inject(ActivatedRoute)
-  router = inject(Router)
-  portalService = inject(PortalService)
-  userService = inject(UserService)
+  constructor(readonly route: ActivatedRoute, readonly router: Router) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe((data) => {
-      const infrastructure_token = data.get('infrastructure_token')
-      const authorization = data.get('authorization_token')
+    this.route.queryParamMap.subscribe((params) => {
+      const authorization_token = params.get('authorization_token')
+      const infrastructure_token = params.get('infrastructure_token')
 
-      if (infrastructure_token && authorization) {
-        localStorage.setItem(
-          '@siafic:infrastructure_token',
-          infrastructure_token,
-        )
-        localStorage.setItem('@siafic:authorization_token', authorization)
-
-        // this.portalService.getUsuarioById(authorization).subscribe((value) => {
-        //   this.userService.saveUser(value)
-        //   this.router.navigate(['/'])
-        // })
-
-        this.router.navigate(['/'])
+      if (!authorization_token || authorization_token === '') {
+        const hasToken = localStorage.getItem('token');
+        if (hasToken && hasToken != 'undefined') {
+          this.router.navigate(['/'], { replaceUrl: true });
+          return;
+        }
+        const apiUrl = environment().apiUrl as string;
+        if (apiUrl.includes('hom'))
+          window.location.href = 'https://hom.siafic.ms.gov.br/login';
+        if (apiUrl.includes('dev'))
+          window.location.href = 'https://dev.siafic.ms.gov.br/login';
       }
-    })
+      localStorage.setItem('authorization_token', authorization_token || '');
+      localStorage.setItem('infrastructure_token', infrastructure_token || '');
+    });
+    this.router.navigate(['/lista-consorcios']);
   }
 }

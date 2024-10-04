@@ -1,0 +1,261 @@
+<p-toast
+  [showTransitionOptions]="'200ms'"
+  [hideTransitionOptions]="'500ms'"
+></p-toast>
+
+<div class="form-container">
+  <div class="camp-row">
+    <div class="third-div">
+      <h3>Número: <span class="text-red-500">*</span></h3>
+      <div style="width: 100%">
+        <input
+          type="text"
+          [(ngModel)]="numeroNovoConsorcio"
+          class="form-control"
+          disabled
+          name="numeroNovoConsorcio"
+        />
+      </div>
+    </div>
+
+    <div class="third-div">
+      <h3>Data de Emissão: <span class="text-red-500">*</span></h3>
+
+      <div style="display: flex; width: 100%">
+        <p-calendar
+          [(ngModel)]="dataEmissao"
+          [showIcon]="true"
+          disabled
+          (ngModelChange)="dataEmissaoChange()"
+          [ngClass]="
+            isDataEmissaoValid ? 'calendar-control' : 'calendar-control-error'
+          "
+          dateFormat="dd/mm/yy"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <div class="first-div">
+      <h3>Contrato de Rateio Nº:</h3>
+      <input
+        type="text"
+        [(ngModel)]="numeroContratoRateio"
+        class="form-control"
+        name="numeroContratoRateio"
+      />
+    </div>
+  </div>
+
+  <div class="camp-row">
+    <div class="first-div">
+      <h3>Nome Consórcio: <span class="text-red-500">*</span></h3>
+      <div style="width: 100%">
+        <input
+          type="text"
+          [(ngModel)]="nomeConsorcio"
+          class="form-control"
+          name="nomeConsorcio"
+        />
+      </div>
+    </div>
+
+    <div class="first-div">
+      <h3>Contrato de Rateio Arquivo:</h3>
+      <div style="display: flex; width: 100%; gap: 0.5rem">
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="documentoNome"
+          readonly
+        />
+
+        <button class="advance-button-blue" (click)="documentoInput.click()">
+          <i
+            class="fa-regular fa-file-lines"
+            style="color: #ffffff; font-size: 17px"
+          ></i>
+          Anexar
+        </button>
+
+        <input
+          #documentoInput
+          type="file"
+          style="display: none"
+          accept="application/pdf,.doc,.docx"
+          (change)="tratarDocumento($event)"
+        />
+
+        <button class="advance-button-blue" (click)="documentoDelete()">
+          <i
+            class="fa-regular fa-file-lines"
+            style="color: #ffffff; font-size: 17px"
+          ></i>
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="camp-row">
+    <div class="third-div">
+      <h3>Data Início Vigência: <span class="text-red-500">*</span></h3>
+      <div style="display: flex; width: 100%">
+        <p-calendar
+          [(ngModel)]="dataInicioVigencia"
+          [showIcon]="true"
+          (ngModelChange)="dataInicioVigenciaChange()"
+          [ngClass]="
+            isDataInicioVigenciaValid
+              ? 'calendar-control'
+              : 'calendar-control-error'
+          "
+          dateFormat="dd/mm/yy"
+        ></p-calendar>
+
+        <button
+          (click)="clearFormInput('dataInicioVigencia')"
+          class="dropdown-clear-button"
+          *ngIf="dataInicioVigencia"
+          style="margin-left: -60px"
+        >
+          <i
+            class="bi bi-x-lg"
+            style="font-size: 11px; color: rgb(39, 38, 38)"
+          ></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="third-div">
+      <h3>Data Fim Vigência: <span class="text-red-500">*</span></h3>
+      <div style="display: flex; width: 100%">
+        <p-calendar
+          [(ngModel)]="dataFimVigencia"
+          [showIcon]="true"
+          (ngModelChange)="dataFimVigenciaChange()"
+          [ngClass]="
+            isDataFimVigenciaValid
+              ? 'calendar-control'
+              : 'calendar-control-error'
+          "
+          dateFormat="dd/mm/yy"
+        ></p-calendar>
+
+        <button
+          (click)="clearFormInput('dataFimVigencia')"
+          class="dropdown-clear-button"
+          *ngIf="dataFimVigencia"
+          style="margin-left: -60px"
+        >
+          <i
+            class="bi bi-x-lg"
+            style="font-size: 11px; color: rgb(39, 38, 38)"
+          ></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="first-div">
+      <h3>CNPJ: <span class="text-red-500">*</span></h3>
+      <div style="width: 100%">
+        <p-multiSelect
+          [options]="credoresList"
+          [(ngModel)]="selectedCredor"
+          (onChange)="onSelect($event)"
+          [showToggleAll]="false"
+          optionLabel="nomeCredorIdentificacao"
+          placeholder="Selecione o Credor"
+        ></p-multiSelect>
+      </div>
+    </div>
+  </div>
+
+  <div class="camp-row">
+    <div class="third-div">
+      <h3>Valor: <span class="text-red-500">*</span></h3>
+      <div style="width: 100%">
+        <input
+          type="text"
+          [(ngModel)]="valor"
+          currencyMask
+          class="form-control"
+          name="valor"
+          [options]="{
+            prefix: 'R$ ',
+            thousands: '.',
+            decimal: ',',
+            precision: 2
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="first-div">
+      <h3>UG Interveniente: <span class="text-red-500">*</span></h3>
+      <div style="width: 100%">
+        <p-multiSelect
+          [options]="ugList"
+          [(ngModel)]="ugSelected"
+          optionLabel="nome"
+          placeholder="Selecione a Unidade Gestora"
+        ></p-multiSelect>
+      </div>
+    </div>
+  </div>
+
+  <div class="camp-row">
+    <div class="first-div">
+      <div style="display: flex; gap: 0.5rem">
+        <h3>Finalidade:</h3>
+
+        <p class="character-count-p">
+          {{ "(" + finalidadeCharacterCount + " caracteres restantes)" }}
+        </p>
+      </div>
+      <div style="width: 100%">
+        <textarea
+          class="form-control"
+          type="text"
+          [(ngModel)]="finalidade"
+          name="finalidade"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-buttons-container">
+    <button class="return-button" (click)="cancelConfirmationModalTrigger()">
+      Cancelar
+    </button>
+
+    <button class="advance-button-blue" (click)="salvarConsorcio()">
+      Salvar
+    </button>
+  </div>
+
+  <p-dialog
+    [(visible)]="confirmationModalOpen"
+    [style]="{ width: '600px', height: '175px' }"
+    header="Ao cancelar todos os dados informados serão perdidos. Deseja realmente Cancelar?"
+    [closable]="false"
+    [modal]="true"
+    styleClass="p-fluid"
+  >
+    <div class="buttons-container">
+      <button
+        class="return-button"
+        style="font-size: 15px"
+        (click)="cancelConfirmation(0)"
+      >
+        Cancelar
+      </button>
+      <button
+        class="advance-button-blue"
+        style="font-size: 15px"
+        (click)="cancelConfirmation(1)"
+      >
+        Confirmar
+      </button>
+    </div>
+  </p-dialog>
+</div>
