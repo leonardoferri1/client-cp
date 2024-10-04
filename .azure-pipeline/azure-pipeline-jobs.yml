@@ -1,0 +1,24 @@
+jobs:
+  - job: oci_develop
+    displayName: 'Publicar em Desenvolvimento'
+    condition: eq(variables.branchName, 'Develop')
+    pool:
+      name: oci-develop
+    steps:
+      - template: azure-pipeline-steps.yml
+
+  - job: oci_homolog
+    displayName: 'Publicar em Homologação'
+    condition: eq(variables.branchName, 'Homolog')
+    pool:
+      name: oci-homolog
+    steps:
+      - template: azure-pipeline-steps.yml
+
+  - job: oci_production
+    displayName: 'Publicar em Produção'
+    condition: eq(variables.branchName, 'main')
+    pool:
+      name: oci-production-siafic
+    steps:
+      - template: azure-pipeline-steps.yml

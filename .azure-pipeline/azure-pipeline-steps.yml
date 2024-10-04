@@ -1,0 +1,11 @@
+steps:
+  - script: echo "minioBucket=$(minioBucket)"
+  - script: rm -rf .git
+  - script: rm -f ./package-lock.json
+  - script: mc cp minio/$(minioBucket)/siafic/creditos-receber-front/.env ./.env
+  - script: cp -f ./docker-compose-deploy.yml ./docker-compose.yml
+  - script: docker-compose build --no-cache
+  - script: docker stack rm siafic-creditos-receber-front
+  - script: docker stack deploy --compose-file docker-compose.yml siafic-creditos-receber-front
+  - script: docker system prune --force --filter "label=projeto=siafic.ms.gov.br" --filter "label=imagem=creditos-receber-front"
+  - script: docker builder prune -f

@@ -1,0 +1,41 @@
+<div
+  class="flex flex-col border-2 border-brand bg-white rounded-lg p-2 gap-4 hover:brightness-90 cursor-pointer transition-all"
+  *ngIf="orcamento.dia"
+>
+  <div class="flex flex-row mx-auto font-bold text-xl">{{ orcamento.dia }}</div>
+
+  <div class="flex flex-row px-2 gap-2 justify-center items-center">
+    <div class="flex flex-col">
+      <img src="/assets/img/icons8-charity-96.png" class="size-8" alt="" />
+    </div>
+    <div class="flex flex-col w-full">
+      <div class="flex flex-col w-full rounded-xl bg-gray-200 p-2 items-end">
+        <p class="font-bold text-sm">
+          {{ orcamento.arrecadado | currency : "BRL" }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row px-2 pb-5 gap-2 justify-center items-center">
+    <div class="flex flex-col">
+      <img src="/assets/img/guia-financeiro.png" class="size-8" alt="" />
+    </div>
+    <div class="flex flex-col w-full">
+      <div class="flex flex-col w-full rounded-xl bg-gray-200 p-2 items-end">
+        <p class="font-bold text-sm">
+          {{ orcamento.arrecadado | currency : "BRL" }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-around">
+    <div class="font-medium flex flex-col text-xs">
+      <div class="flex flex-row font-bold">Projetado 100%</div>
+    </div>
+    <div class="font-medium flex flex-col text-xs">
+      <div class="flex flex-row font-bold">Arrecadado: 200%</div>
+    </div>
+  </div>
+</div>

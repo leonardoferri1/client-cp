@@ -1,0 +1,25 @@
+footer {
+  left: 0 !important;
+  bottom: 0px !important;
+
+  width: 100% !important;
+}
+
+.footer-container_ {
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 1fr 1fr;
+  @apply flex items-center justify-between container;
+}
+
+.footer_ {
+  bottom: 0;
+
+  @apply bg-gradient-to-b from-transparent to-brand;
+  padding-top: 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}

@@ -1,0 +1,25 @@
+<nav class="flex w-full h-14 bg-[#F9FAFB]">
+  <div
+    class="bg-brand px-4 hover:brightness-110 transition-all text-white font-semibold text-sm uppercase flex flex-row items-center gap-2"
+    routerLink="/"
+  >
+    <i class="pi pi-folder size-4 text-white"></i>
+
+    <span> SIAFIC - Créditos a Receber </span>
+  </div>
+  <p-megaMenu [model]="menuItems" [style]="{ 'border': 'none'}"> </p-megaMenu>
+  <div class="flex flex-1"></div>
+  <div class="flex flex-col justify-center items-center">
+    {{ userService.user().nome }}
+  </div>
+
+  <div class="flex flex-col px-4 justify-center items-center">
+    <button
+      class="hover:bg-brand transition-all rounded-full p-3 justify-center items-center flex text-brand hover:text-white"
+      [pTooltip]="'Sair'"
+      tooltipPosition="bottom"
+    >
+      <i class="pi pi-sign-out size-4"></i>
+    </button>
+  </div>
+</nav>

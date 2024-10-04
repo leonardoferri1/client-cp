@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "primeicons/primeicons.css";
+
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer primeng; //not necessary I think
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+@font-face {
+  font-family: "Avenir-It";
+  src: url("./assets/fonts/AvenirNextLTPro-It.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir-Regular";
+  src: url("./assets/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir-Bold";
+  src: url("./assets/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
+}
+
+* {
+  font-family: "Inter";
+}
+
+.button {
+  &-advance {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    border: none;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+
+    @apply bg-brand transition-all text-white hover:brightness-125;
+  }
+
+  &-basic {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    border: none;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+
+    @apply bg-gray-400 transition-all text-white hover:brightness-105;
+  }
+}
+

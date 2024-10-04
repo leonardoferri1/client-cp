@@ -1,0 +1,20 @@
+variables:
+  branchName: $[variables['Build.SourceBranchName']]
+  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+    minioBucket: pipeline-deploy-production
+  ${{ elseif eq(variables['Build.SourceBranchName'], 'homolog') }}:
+    minioBucket: pipeline-deploy-homolog
+  ${{ else }}:
+    minioBucket: pipeline-deploy-develop
+
+trigger:
+  - Develop
+  - Homolog
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+
+jobs:
+  - template: .azure-pipeline/azure-pipeline-jobs.yml

@@ -1,0 +1,54 @@
+<app-filtro-execucao-orcamentaria [isFiltroOpen]="isFiltroOpen"
+    (onFilterApply)="onFilterApply($event)"></app-filtro-execucao-orcamentaria>
+
+
+<div class="container mx-auto">
+    <div class="flex w-full mx-auto justify-center py-8 font-semibold">
+        EXECUÇÃO ORÇAMENTÁRIA - RECEITA
+    </div>
+
+    <div class="flex flex-row justify-between  py-2 border-b-2 border-brand">
+        <div class="flex flex-col text-brand text-3xl font-bold">2025</div>
+        <div class="flex flex-col">
+            <button class="button-advance gap-2" (click)="openFilter()">
+                <i class="pi pi-filter"></i>
+                Filtros</button>
+        </div>
+    </div>
+
+    <div class="grid row-auto grid-cols-2 md:grid-cols-4 sm:grid-cols-1 gap-4 my-8">
+        @for (mes of meses; track $index) {
+        <app-orcamento-mes (click)="onClickOrcamentoMes($event)" [orcamento]="mes"></app-orcamento-mes>
+        }
+    </div>
+
+    <div class="flex flex-row w-full container">
+        <div class="flex flex-col w-full gap-4">
+            <div class="flex flex-row max-w-lg gap-6 text-lg font-bold border-b-brand border-b-4">
+                <div class="flex flex-col">Valor Arrecadado</div>
+                <div class="flex flex-col">R$ 0.00</div>
+                <div class="flex flex-col">Valor Projetado</div>
+                <div class="flex flex-col">R$ 0.00</div>
+            </div>
+            <div class="flex flex-row max-w-lg text-lg gap-6 font-bold border-b-brand border-b-4">
+                <div class="flex flex-col">Arrecadado</div>
+                <div class="flex flex-col">0%</div>
+                <div class="flex flex-col">Projetado</div>
+                <div class="flex flex-col">0%</div>
+            </div>
+        </div>
+        <div class="flex flex-row gap-12 w-full justify-end items-center">
+            <div class="flex flex-row justify-center items-center gap-4 font-bold">
+                <img src="/assets/img/icons8-charity-96.png" class="size-12 object-contain" alt="">
+                Arrecadado
+            </div>
+            <div class="flex flex-row justify-center items-center gap-4 font-bold">
+                <img src="/assets/img/guia-financeiro.png" class="size-12 object-contain" alt="">
+                Projetado
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="py-24"></div>
